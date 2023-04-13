@@ -1,0 +1,3 @@
+temp/*
+venv
+src/__pycache__

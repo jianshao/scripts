@@ -12,7 +12,7 @@ ORI_SCREEN_HEIGHT = 1224
 
 
 class MobileController(Process):
-    def __init__(self, serial, package, activity):
+    def __init__(self, serial, package, activity, channel):
         super(MobileController, self).__init__()
         self.serial = serial
         self.package = package
@@ -20,6 +20,7 @@ class MobileController(Process):
         self.proportion_width = 1.0
         self.proportion_height = 1.0
         self.can_process = True
+        self.channel = channel
         self.init()
         self.prepare()
 
@@ -102,10 +103,9 @@ class MobileController(Process):
             if accepted:
                 # 在好友聊天频道发送消息
                 self.send_messages()
-                continue
-
-            time.sleep(random.randint(10, 20))
-            count += 1
+            else:
+                time.sleep(random.randint(10, 20))
+                count += 1
 
         self.can_process = True
 
@@ -208,7 +208,7 @@ class MobileController(Process):
             # 随机时间执行随机操作
             messages = config["world_chat"]
             message = messages[random.randint(0, len(messages) - 1)]
-            common.send_messages(self.serial, 2, [message])
+            common.send_messages(self.serial, self.channel, [message])
 
             time.sleep(random.randint(5, 20))
             self.check()

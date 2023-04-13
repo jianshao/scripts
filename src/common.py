@@ -213,12 +213,19 @@ def build_one_text_operators(text):
 
 def send_messages(serial, channel, texts):
     open_chat = [
-        # 关闭游戏邀请
+        # 关闭游戏邀请窗
         {
             "operate_type": "click",   # 操作类型，click-点击，check-检查，text-文本输入
             "position_src": "match",   # 坐标来源，match-从截屏中匹配，value-直接提供坐标点
-            "target_image": build_target_image("login/首页关闭.jpg"),   # 从截屏匹配的图像
-            "once": True   # 只匹配一次，部分图像可以匹配多次，如首页活动页面不确定有多少个
+            "target_image": build_target_image("friends/游戏邀请关闭.jpg"),   # 从截屏匹配的图像
+            "once": False   # 只匹配一次，部分图像可以匹配多次，如首页活动页面不确定有多少个
+        },
+        # 关闭聊天提示窗
+        {
+            "operate_type": "click",   # 操作类型，click-点击，check-检查，text-文本输入
+            "position_src": "match",   # 坐标来源，match-从截屏中匹配，value-直接提供坐标点
+            "target_image": build_target_image("message/聊天提示关闭.jpg"),   # 从截屏匹配的图像
+            "once": False   # 只匹配一次，部分图像可以匹配多次，如首页活动页面不确定有多少个
         },
         # 从首页点开聊天窗
         {
